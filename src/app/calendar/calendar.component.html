@@ -1,0 +1,16 @@
+<p>
+  {{ month.title }}
+</p>
+
+<table style="width:100%">
+  <tr>
+    <th *ngFor='let weekDay of weekDays'>{{ weekDay.title }}</th>
+  </tr>
+
+  <tr *ngFor='let w of weeks'>
+    <td *ngFor='let day of w.days'> {{ day.title }} </td>
+  </tr>
+
+</table>
+
+
