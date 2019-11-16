@@ -10,7 +10,10 @@ export class CalendarCreator {
   private month = [];
 
   constructor() {
-    var d = new Date();
+    let d = new Date();
+    let currentYear = d.getFullYear();
+    let monthIndex = d.getMonth();
+
     this.month[0] = "January";
     this.month[1] = "February";
     this.month[2] = "March";
@@ -24,15 +27,7 @@ export class CalendarCreator {
     this.month[10] = "November";
     this.month[11] = "December";
 
-    let currentYear = d.getFullYear();
-    let monthIndex = d.getMonth();
-
-
-    this.currentMonth = new Month();
-    this.currentMonth.title = this.month[d.getMonth()];
-    this.currentMonth.monthIndex = monthIndex;
-    this.currentMonth.year = currentYear;
-    this.currentMonth.days = new Date(currentYear, monthIndex, 0).getDate();
+    this.currentMonth = this.createMonth(monthIndex, currentYear); 
   }
 
   public getCurrentMonth(): Month {
@@ -76,5 +71,20 @@ export class CalendarCreator {
 
     this.currentMonth.weeks = weeks;
     return this.currentMonth;
+  }
+
+
+  private createMonth(monthIndex: number, year: number): Month {
+   
+    let d = new Date();
+
+    let month = new Month(); 
+    month = new Month();
+    month.title = this.month[d.getMonth()];
+    month.monthIndex = monthIndex;
+    month.year = year;
+    month.days = new Date(year, monthIndex, 0).getDate();
+
+    return month;
   }
 }
