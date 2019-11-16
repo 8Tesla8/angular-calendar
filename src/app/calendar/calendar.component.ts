@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Week } from '../model/week';
 import { Day } from '../model/day';
+import { Task } from '../model/task';
 
 @Component({
   selector: 'app-calendar',
@@ -15,6 +16,7 @@ export class CalendarComponent implements OnInit {
     this.createMonth();
   }
 
+
   public month = { title: 'November' };
 
   public weekDays = [ 
@@ -27,7 +29,34 @@ export class CalendarComponent implements OnInit {
     { title: 'Sunday', style: ''},
   ];
 
+
   public weeks: Week[];
+
+  public selectedDay: Day;
+
+  public newTask: Task;
+
+
+  public onSelectDay(day: Day) {
+    this.newTask = new Task();
+
+    this.selectedDay = day;  
+  }
+
+  public onEditTask(task: Task) {
+    task.mode = 'edit'
+  }
+
+  public onSaveEditTask(task: Task) {
+    task.mode = 'show'
+  }
+
+  public onAddTask(){
+    this.selectedDay.tasks.push(this.newTask);
+
+    this.newTask = new Task();
+  }
+
 
   private createMonth(){ 
     
@@ -49,7 +78,10 @@ export class CalendarComponent implements OnInit {
          break;
         }
 
-        this.weeks[weekIndex].days.push( { title: day.toString(), style: '' } as Day );
+        var d = new Day();
+        d.title = day.toString();
+
+        this.weeks[weekIndex].days.push( d );
       }
 
       if(maxDay === day) {

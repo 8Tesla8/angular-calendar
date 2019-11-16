@@ -2,15 +2,57 @@
   {{ month.title }}
 </p>
 
+
 <table style="width:100%">
   <tr>
     <th *ngFor='let weekDay of weekDays'>{{ weekDay.title }}</th>
   </tr>
 
   <tr *ngFor='let w of weeks'>
-    <td *ngFor='let day of w.days'> {{ day.title }} </td>
+    <td *ngFor='let day of w.days'> 
+      <button (click)="onSelectDay(day)"> {{ day.title }} </button>
+    </td>
   </tr>
 
 </table>
 
+
+<div *ngIf='selectedDay'>
+  Agenda on {{ selectedDay.title }}
+
+  <table *ngIf='selectedDay.tasks.length > 0' >
+    <tr>
+      <th> Title </th>
+      <th> Note </th>
+    </tr>
+
+    <tr *ngFor='let task of selectedDay.tasks'>
+      <td> 
+        <input [disabled]="task.mode === 'show'" [(ngModel)]="task.title" type="text">  
+      </td>
+     
+      <td>
+        <input [disabled]="task.mode === 'show'"  [(ngModel)]="task.note" type="text">
+      </td>
+ 
+      <td> 
+        <button *ngIf="task.mode === 'show'" (click)="onEditTask(task)"> Edit </button>
+        <button *ngIf="task.mode === 'edit'" (click)="onSaveEditTask(task)"> Save </button>  
+      </td>
+
+    </tr>
+
+  </table>
+
+  <br>
+
+  <!-- create form -->
+  <div>
+    <input [(ngModel)]="newTask.title" type="text">
+    <input [(ngModel)]="newTask.note" type="text">
+  
+    <button (click)="onAddTask()"> Add Task</button>  
+  </div>
+  
+</div>
 
