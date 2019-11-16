@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarCreator } from './service/calendarCreator.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { CalendarComponent } from './calendar/calendar.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CalendarCreator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

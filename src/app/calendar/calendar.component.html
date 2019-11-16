@@ -1,5 +1,5 @@
 <p>
-  {{ month.title }}
+  {{ month.title }} &nbsp; {{ month.year}}
 </p>
 
 
@@ -8,9 +8,9 @@
     <th *ngFor='let weekDay of weekDays'>{{ weekDay.title }}</th>
   </tr>
 
-  <tr *ngFor='let w of weeks'>
+  <tr *ngFor='let w of month.weeks'>
     <td *ngFor='let day of w.days'> 
-      <button (click)="onSelectDay(day)"> {{ day.title }} </button>
+      <button [hidden]='!day.title' (click)="onSelectDay(day)"> {{ day.title }} </button>
     </td>
   </tr>
 
