@@ -15,8 +15,12 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     this.month = this.calendarCreator.getCurrentMonth();
+    this.currentMonthIndex = this.month.monthIndex;
+    this.currentYear = this.month.year;
   }
 
+  public currentYear: number;
+  public currentMonthIndex: number;
 
   public month: Month;
   public selectedDay: Day;
@@ -37,6 +41,28 @@ export class CalendarComponent implements OnInit {
     this.newTask = new Task();
 
     this.selectedDay = day;  
+  }
+
+  public onNextMonth() {
+    this.currentMonthIndex++;
+
+    if(this.currentMonthIndex == 12){
+      this.currentMonthIndex = 0;
+      this.currentYear++;
+    }
+
+    this.month = this.calendarCreator.getMonth(this.currentMonthIndex, this.currentYear);
+  }
+
+  public onPrevMonth() {
+    this.currentMonthIndex--;
+
+    if(this.currentMonthIndex < 0){
+      this.currentMonthIndex = 11;
+      this.currentYear--;
+    }
+
+    this.month = this.calendarCreator.getMonth(this.currentMonthIndex, this.currentYear);
   }
 
   public onEditTask(task: Task) {

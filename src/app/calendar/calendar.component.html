@@ -1,7 +1,15 @@
-<p>
-  {{ month.title }} &nbsp; {{ month.year}}
-</p>
+<div>
 
+  <button (click)="onPrevMonth()" > Prev </button>
+  
+  <span> {{ month.title }} &nbsp; {{ month.year}} </span>
+
+  <!-- <p> {{ month.title }} &nbsp; {{ month.year}} </p> -->
+  <button (click)="onNextMonth()" > Next </button>
+
+</div>
+
+<br>
 
 <table style="width:100%">
   <tr>
