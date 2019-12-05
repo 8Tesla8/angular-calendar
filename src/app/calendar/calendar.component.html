@@ -10,7 +10,7 @@
 
 <table style="width:100%">
   <tr>
-    <th *ngFor='let weekDay of weekDays'>{{ weekDay.title }}</th>
+    <th *ngFor='let weekDay of weekDays' [ngClass]="weekDay.style" >{{ weekDay.title }}</th>
   </tr>
 
   <tr *ngFor='let w of month.weeks'>

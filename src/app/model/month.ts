@@ -4,7 +4,7 @@ export class Month {
     public weeks: Week[];
 
     public title: string;
-    public monthIndex: number;
+    public monthNumber: number;
     public year: number;
     public days: number;
 

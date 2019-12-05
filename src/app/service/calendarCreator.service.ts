@@ -36,20 +36,20 @@ export class CalendarCreator {
     this.weekday[5] = "Friday";
     this.weekday[6] = "Saturday";
 
-    this.currentMonth = this.getMonth(monthIndex, currentYear);
+    this.currentMonth = this.getMonth(monthIndex +1, currentYear);
   }
 
   public getCurrentMonth(): Month {
     return this.currentMonth;
   }
 
-  public getMonth(monthIndex: number, year: number): Month {
+  public getMonth(monthNumber: number, year: number): Month {
 
     let month = new Month();
-    month.title = this.months[monthIndex];
-    month.monthIndex = monthIndex;
+    month.title = this.months[monthNumber -1];
+    month.monthNumber = monthNumber;
     month.year = year;
-    month.days = new Date(year, monthIndex + 1, 0).getDate();
+    month.days = new Date(year, monthNumber, 0).getDate();
 
     let daysInWeek = 7;
 
@@ -65,7 +65,7 @@ export class CalendarCreator {
 
       // add days in prev month but in first week
       if (weekIndex == 0) {
-        weekDayIndex = new Date(`${year}-${monthIndex + 1}-01`).getDay();
+        weekDayIndex = new Date(`${year}-${monthNumber}-01`).getDay();
         let weekDayName = this.weekday[weekDayIndex];
 
         for (let i = 0; i < weekDayIndex; i++) {

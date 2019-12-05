@@ -15,25 +15,25 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit() {
     this.month = this.calendarCreator.getCurrentMonth();
-    this.currentMonthIndex = this.month.monthIndex;
+    this.currentMonth = this.month.monthNumber;
     this.currentYear = this.month.year;
   }
 
   public currentYear: number;
-  public currentMonthIndex: number;
+  public currentMonth: number;
 
   public month: Month;
   public selectedDay: Day;
   public newTask: Task;
 
   public weekDays = [ 
-    { title: 'Sunday', style: ''},
+    { title: 'Sunday', style: 'red'},
     { title: 'Monday', style: ''},
     { title: 'Tuesday', style: ''},
     { title: 'Wednesday', style: ''},
     { title: 'Thursday', style: ''},
     { title: 'Friday', style: ''},
-    { title: 'Saturday', style: ''},
+    { title: 'Saturday', style: 'red'},
   ];
 
 
@@ -44,25 +44,25 @@ export class CalendarComponent implements OnInit {
   }
 
   public onNextMonth() {
-    this.currentMonthIndex++;
+    this.currentMonth++;
 
-    if(this.currentMonthIndex == 12){
-      this.currentMonthIndex = 0;
+    if(this.currentMonth == 13){
+      this.currentMonth = 1;
       this.currentYear++;
     }
 
-    this.month = this.calendarCreator.getMonth(this.currentMonthIndex, this.currentYear);
+    this.month = this.calendarCreator.getMonth(this.currentMonth, this.currentYear);
   }
 
   public onPrevMonth() {
-    this.currentMonthIndex--;
+    this.currentMonth--;
 
-    if(this.currentMonthIndex < 0){
-      this.currentMonthIndex = 11;
+    if(this.currentMonth < 1){
+      this.currentMonth = 12;
       this.currentYear--;
     }
 
-    this.month = this.calendarCreator.getMonth(this.currentMonthIndex, this.currentYear);
+    this.month = this.calendarCreator.getMonth(this.currentMonth, this.currentYear);
   }
 
   public onEditTask(task: Task) {
