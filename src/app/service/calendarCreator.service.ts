@@ -8,6 +8,7 @@ export class CalendarCreator {
   public currentMonth = new Month();
 
   private months = [];
+  private weekday =[];
 
   constructor() {
     let date = new Date();
@@ -27,6 +28,14 @@ export class CalendarCreator {
     this.months[10] = "November";
     this.months[11] = "December";
 
+    this.weekday[0] = "Sunday";
+    this.weekday[1] = "Monday";
+    this.weekday[2] = "Tuesday";
+    this.weekday[3] = "Wednesday";
+    this.weekday[4] = "Thursday";
+    this.weekday[5] = "Friday";
+    this.weekday[6] = "Saturday";
+
     this.currentMonth = this.getMonth(monthIndex, currentYear);
   }
 
@@ -35,21 +44,6 @@ export class CalendarCreator {
   }
 
   public getMonth(monthIndex: number, year: number): Month {
-    var d = new Date();
-    var weekday = new Array(7);
-    weekday[0] = "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
-
-    var n = weekday[d.getDay()];
-    var d2 = new Date(`${year}-${monthIndex + 1}-01`);
-    var n2 = weekday[d2.getDay()];
-    //
-
 
     let month = new Month();
     month.title = this.months[monthIndex];
@@ -67,17 +61,19 @@ export class CalendarCreator {
     for (let weekIndex = 0; ; weekIndex++) {
       weeks.push(new Week());
 
-      let weekDay = 0;
+      let weekDayIndex = 0;
 
       // add days in prev month but in first week
       if (weekIndex == 0) {
-        weekDay = new Date(`${year}-${monthIndex + 1}-01`).getDay();
-        for (let i = 0; i < weekDay; i++) {
+        weekDayIndex = new Date(`${year}-${monthIndex + 1}-01`).getDay();
+        let weekDayName = this.weekday[weekDayIndex];
+
+        for (let i = 0; i < weekDayIndex; i++) {
           weeks[0].days.push(new Day());
         }
       }
 
-      for (; weekDay < daysInWeek; weekDay++) {
+      for (; weekDayIndex < daysInWeek; weekDayIndex++) {
         ++day;
 
         if (day > maxDay) {
