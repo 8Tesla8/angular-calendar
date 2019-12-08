@@ -63,7 +63,7 @@ export class CalendarCreator {
 
       let weekDayIndex = 0;
 
-      // add days in prev month but in first week
+      // add days of prev month if they are in first week of next month
       if (weekIndex == 0) {
         weekDayIndex = new Date(`${year}-${monthNumber}-01`).getDay();
         let weekDayName = this.weekday[weekDayIndex];

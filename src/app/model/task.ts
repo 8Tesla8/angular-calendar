@@ -9,6 +9,6 @@ export class Task {
        this.note = '';
        this.time = '';
 
-       this.mode = 'show';
+       this.mode = 'show'; //'edit'
    }
 }
