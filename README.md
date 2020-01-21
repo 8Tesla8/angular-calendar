@@ -1,6 +1,6 @@
-# Simple task manager with Calendar
+# Task manager with Calendar
 
-Simple task manager with calendar
+Simple task manager with calendar, created on pure Angular
 
 ## Links 
 
